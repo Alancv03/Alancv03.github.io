@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Un Viaje de Recuerdos</title>
+    <style>
+        /* Estilos generales */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background: linear-gradient(135deg, #FFE5E5, #FFD1D1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 800px;
+            padding: 30px;
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.92);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px;
+        }
+
+        h1, h2 {
+            color: #FF6B6B;
+            font-family: 'Playfair Display', serif;
+            margin-bottom: 20px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.1);
+        }
+
+        p {
+            color: #555;
+            font-size: 1.2em;
+            line-height: 1.8;
+            margin: 20px 0;
+        }
+
+        img {
+            display: block;
+            margin: 25px auto;
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            font-size: 1.2em;
+            border-radius: 50px;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+            margin: 10px 0;
+        }
+
+        .btn i {
+            font-size: 1.1em;
+        }
+
+        /* Estilos responsivos para tablets */
+        @media (max-width: 768px) {
+            .container {
+                width: 85%;
+                padding: 20px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 1.1em;
+                line-height: 1.6;
+            }
+
+            .btn {
+                padding: 10px 25px;
+                font-size: 1.1em;
+            }
+        }
+
+        /* Estilos responsivos para móviles */
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            p {
+                font-size: 1em;
+                line-height: 1.5;
+                margin: 15px 0;
+            }
+
+            img {
+                margin: 15px 0;
+            }
+
+            .btn {
+                padding: 8px 20px;
+                font-size: 1em;
+                width: 80%;
+                max-width: 250px;
+            }
+        }
+
+        /* Ajustes para pantallas muy pequeñas */
+        @media (max-width: 320px) {
+            h1 {
+                font-size: 1.3em;
+            }
+
+            h2 {
+                font-size: 1.1em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            .btn {
+                padding: 8px 15px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Ajustes para diferentes alturas */
+        @media (max-height: 700px) {
+            body {
+                height: auto;
+            }
+
+            .container {
+                margin: 10px auto;
+            }
+
+            img {
+                max-height: 200px;
+                object-fit: cover;
+            }
+        }
+
+        /* Animaciones mejoradas */
+        .section {
+            display: none;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.5s ease;
+        }
+
+        .show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .fade-in {
+            animation: fadeIn 1s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: scale(0.95); 
+            }
+            to { 
+                opacity: 1; 
+                transform: scale(1); 
+            }
+        }
+
+        /* Efectos hover mejorados para dispositivos no táctiles */
+        @media (hover: hover) {
+            .btn:hover {
+                background: linear-gradient(45deg, #FF8E8E, #FF6B6B);
+                transform: translateY(-2px) scale(1.05);
+                box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+            }
+
+            .btn:hover i {
+                transform: scale(1.2);
+            }
+
+            img:hover {
+                transform: scale(1.02);
+            }
+        }
+
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            height: auto;
+            margin: 0;
+        }
+
+        /* Ajustes responsivos */
+        @media (max-width: 768px) {
+            img {
+                max-width: 95%;
+            }
+            
+            .image-container img {
+                max-width: 90%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            img {
+                height: 200px;
+            }
+
+            .image-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .image-container img {
+                width: 100%;
+                max-width: 100%;
+                height: 180px;
+            }
+        }
+
+        /* Estilos base */
+        .section {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 15px;
+        }
+
+        p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        img {
+            display: block;
+            margin: 25px auto;
+            max-width: 80%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 15px 25px rgba(0,0,0,0.2);
+            transition: transform 0.3s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 25px;
+            font-size: 1.1rem;
+            margin: 15px 0;
+        }
+
+        /* Contenedor de imágenes múltiples */
+        .image-container {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin: 25px 0;
+        }
+
+        .image-container img {
+            max-width: 45%;
+            height: auto;
+            margin: 0;
+        }
+
+        /* Media Queries para tablets */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2rem;
+            }
+
+            h2 {
+                font-size: 1.8rem;
+            }
+
+            p {
+                font-size: 1.1rem;
+            }
+
+            img {
+                max-width: 90%;
+            }
+
+            .btn {
+                padding: 10px 20px;
+                font-size: 1rem;
+            }
+        }
+
+        /* Media Queries para móviles */
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 1.8rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+
+            p {
+                font-size: 1rem;
+                padding: 0 10px;
+            }
+
+            img {
+                max-width: 95%;
+            }
+
+            .image-container {
+                gap: 15px;
+            }
+
+            .image-container img {
+                max-width: 90%;
+            }
+
+            .btn {
+                padding: 8px 16px;
+                font-size: 0.9rem;
+                width: 80%;
+                max-width: 300px;
+            }
+
+            .section {
+                padding: 15px 10px;
+            }
+        }
+
+        /* Animaciones suaves */
+        * {
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Botón de música */
+        .music-btn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            border: none;
+            color: white;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 4px 15px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+        }
+
+        .music-btn.playing {
+            animation: pulse 1.5s infinite;
+        }
+
+        /* Corazones flotantes */
+        .hearts-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .heart {
+            position: absolute;
+            color: rgba(255, 107, 107, 0.3);
+            animation: float-heart 6s ease-in infinite;
+        }
+
+        /* Mejora de transiciones entre secciones */
+        .section {
+            transform: translateY(50px);
+            opacity: 0;
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .section.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Animaciones */
+        @keyframes float-heart {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.1); }
+            100% { transform: scale(1); }
+        }
+
+        /* Mejora de animación fade-in */
+        .fade-in {
+            animation: fadeInScale 1.2s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        @keyframes fadeInScale {
+            0% {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        /* Mejora hover de imágenes */
+        img {
+            transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        img:hover {
+            transform: scale(1.03) translateY(-5px);
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+
+    <div class="container fade-in">
+        <!-- Sección 1 -->
+        <div class="section show" id="section1">
+            <h1>🌻 ¡Bienvenida a Nuestro Viaje, Mi Amor! 🌻</h1>
+            <p>Hoy celebramos nuestros 4 años juntos, y quiero llevarte en un recorrido por nuestros momentos más especiales.</p>
+            <a href="#" class="btn" onclick="showNextSection('section2')">
+                <i class="fas fa-heart"></i> Iniciar el Viaje
+            </a>
+        </div>
+
+        <!-- Sección 2 -->
+        <div class="section" id="section2">
+            <h2>Primer Encuentro</h2>
+            <p>¿Recuerdas la primera vez que nos vimos? Jamás olvidaré esa sonrisa, fue el inicio de algo mágico.</p>
+            <img src="img/iamgen4.jpg" alt="Primer Encuentro">
+            <a href="#" class="btn" onclick="showNextSection('section3')">
+                <i class="fas fa-star"></i> Siguiente Recuerdo
+            </a>
+        </div>
+
+        <!-- Sección 3 -->
+        <div class="section" id="section3">
+            <h2>Los Girasoles 🌻</h2>
+            <p>Desde entonces, cada girasol que veo me recuerda a ti: siempre radiante, dándome alegría y luz. Eres mi girasol bonita.❤️</p>
+            <img src="img/iamgen5.jpg" alt="Girasoles">
+            <a href="#" class="btn" onclick="showNextSection('section4')">
+                <i class="fas fa-sun"></i> Continuar
+            </a>
+        </div>
+
+        <!-- Sección 4 -->
+        <div class="section" id="section4">
+            <h2>Nuestros Momentos</h2>
+            <p>Las risas, las charlas hasta tarde, y cada instante juntos... todos son recuerdos inolvidables.</p>
+            <img src="img/iamgen6.jpg" alt="Momentos">
+            <a href="#" class="btn" onclick="showNextSection('section5')">
+                <i class="fas fa-camera"></i> Ver Más
+            </a>
+        </div>
+
+        <!-- Sección 5 -->
+        <div class="section" id="section5">
+            <h2>Para Siempre</h2>
+            <p>Quiero que sepas que estoy aquí para ti, para seguir creando más recuerdos y aventuras juntos. Te amo ❤️</p>
+            <div class="image-container">
+                <img src="img/iamgen7.jpg" alt="Para Siempre">
+                <img src="img/iamgen8.jpg" alt="Para Siempre 2">
+            </div>
+            <a href="carta.html" class="btn">
+                <i class="fas fa-envelope-open-heart"></i> Leer Carta
+            </a>
+        </div>
+    </div>
+
+    <script>
+        function showNextSection(id) {
+            const currentSection = document.querySelector('.section.show');
+            if (currentSection) currentSection.classList.remove('show');
+            document.getElementById(id).classList.add('show');
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const music = document.getElementById('bgMusic');
+            const musicBtn = document.getElementById('musicToggle');
+            
+            // Verificar si el audio está listo
+            console.log('Estado del audio:', music.readyState);
+            
+            musicBtn.addEventListener('click', async function() {
+                try {
+                    if (music.paused) {
+                        await music.play();
+                        musicBtn.classList.add('playing');
+                        console.log('Reproduciendo música');
+                    } else {
+                        music.pause();
+                        musicBtn.classList.remove('playing');
+                        console.log('Música pausada');
+                    }
+                } catch (error) {
+                    console.error('Error al reproducir:', error);
+                }
+            });
+
+            // Eventos de depuración
+            music.addEventListener('loadeddata', () => {
+                console.log('Audio cargado completamente');
+            });
+
+            music.addEventListener('error', (e) => {
+                console.error('Error al cargar el audio:', e);
+            });
+
+            music.addEventListener('playing', () => {
+                console.log('El audio está sonando');
+            });
+        });
+
+        // Asegurarse de que la música esté cargada
+        music.addEventListener('loadeddata', () => {
+            console.log('Audio cargado y listo para reproducir');
+        });
+
+        // Manejar errores de carga
+        music.addEventListener('error', (e) => {
+            console.log('Error al cargar el audio:', e);
+        });
+    </script>
+
+    <!-- Añade esto justo después del <body> -->
+    <div class="hearts-container"></div>
+    <audio id="bgMusic" preload="auto" loop>
+        <source src="video/audio.mp3" type="audio/mp3">
+        Tu navegador no soporta el elemento de audio.
+    </audio>
+    <button id="musicToggle" class="music-btn">
+        <i class="fas fa-music"></i>
+    </button>
+
+</body>
+</html>

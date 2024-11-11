@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Te Amo ❤️</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Arial', sans-serif;
+        }
+
+        .video-container {
+            position: relative;
+            width: 90%;
+            max-width: 800px;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 0 50px rgba(255,75,110,0.3);
+            margin: 20px auto;
+        }
+
+        video {
+            width: 100%;
+            display: block;
+            height: auto;
+        }
+
+        .hearts {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .heart {
+            position: absolute;
+            animation: floatHeart linear infinite;
+        }
+
+        .roses-container {
+            position: fixed;
+            bottom: 20px;
+            width: 100%;
+            text-align: center;
+            font-size: 2em;
+            animation: growRoses 2s ease-out forwards;
+            opacity: 0;
+            z-index: 2;
+        }
+
+        @media (max-width: 768px) {
+            .video-container {
+                width: 95%;
+                margin: 10px auto;
+            }
+
+            .roses-container {
+                font-size: 1.5em;
+                bottom: 10px;
+            }
+
+            .heart {
+                font-size: 14px !important;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .video-container {
+                width: 98%;
+                margin: 5px auto;
+            }
+
+            .roses-container {
+                font-size: 1.2em;
+                bottom: 5px;
+            }
+        }
+
+        @keyframes floatHeart {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100vh) scale(1);
+                opacity: 0;
+            }
+        }
+
+        @keyframes growRoses {
+            0% {
+                transform: translateY(100%);
+                opacity: 0;
+            }
+            100% {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .container {
+                width: 90%;
+                padding: 20px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            p {
+                font-size: 1em;
+                line-height: 1.6;
+            }
+
+            .btn {
+                padding: 10px 25px;
+                font-size: 1em;
+            }
+
+            img {
+                max-width: 100%;
+                margin: 15px 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 10px;
+            }
+
+            .container {
+                width: 95%;
+                padding: 15px;
+            }
+
+            h1 {
+                font-size: 1.5em;
+            }
+
+            h2 {
+                font-size: 1.3em;
+            }
+
+            p {
+                font-size: 0.9em;
+                line-height: 1.5;
+            }
+
+            .btn {
+                padding: 8px 20px;
+                font-size: 0.9em;
+            }
+        }
+
+        /* Ajuste para altura en móviles */
+        @media (max-height: 700px) {
+            body {
+                height: auto;
+                min-height: 100vh;
+            }
+
+            .container {
+                margin: 20px 0;
+            }
+        }
+
+        /* Estilos para el botón de regreso */
+        .return-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(45deg, #FF6B6B, #FF8E8E);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-size: 1.2em;
+            box-shadow: 0 5px 15px rgba(255,107,107,0.3);
+            transition: all 0.3s ease;
+            z-index: 3;
+            opacity: 0;
+            animation: showButton 3s 2s forwards;
+        }
+
+        .return-btn:hover {
+            background: linear-gradient(45deg, #FF8E8E, #FF6B6B);
+            transform: translateX(-50%) translateY(-2px);
+            box-shadow: 0 8px 20px rgba(255,107,107,0.4);
+        }
+
+        @keyframes showButton {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        /* Ajustes responsivos para el botón */
+        @media (max-width: 768px) {
+            .return-btn {
+                font-size: 1em;
+                padding: 10px 25px;
+                bottom: 15px;
+            }
+
+            .roses-container {
+                bottom: 80px; /* Ajustado para no solapar con el botón */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .return-btn {
+                font-size: 0.9em;
+                padding: 8px 20px;
+                bottom: 10px;
+                width: 80%;
+                max-width: 200px;
+                text-align: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hearts" id="hearts"></div>
+    
+    <div class="video-container">
+        <video autoplay muted loop playsinline controls>
+            <source src="video/video2.mp4" type="video/mp4">
+        </video>
+    </div>
+
+    <div class="roses-container">
+        🌹🌹🌹
+    </div>
+
+    <!-- Nuevo botón de regreso -->
+    <a href="index.html" class="return-btn">Volver a Empezar ❤️</a>
+
+    <script>
+        function createHeart() {
+            const heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 3 + 2 + 's';
+            
+            const isMobile = window.innerWidth <= 768;
+            heart.style.fontSize = isMobile ? 
+                (Math.random() * 10 + 8 + 'px') : 
+                (Math.random() * 20 + 10 + 'px');
+            
+            document.getElementById('hearts').appendChild(heart);
+
+            setTimeout(() => {
+                heart.remove();
+            }, 5000);
+        }
+
+        const interval = window.innerWidth <= 768 ? 500 : 300;
+        setInterval(createHeart, interval);
+
+        // Agregar esto para activar el sonido después de cargar
+        window.addEventListener('load', function() {
+            const video = document.querySelector('video');
+            video.muted = false; // Activa el sonido
+            video.play(); // Asegura que el video se reproduzca
+        });
+    </script>
+</body>
+</html> 
+</html> 
